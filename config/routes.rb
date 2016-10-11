@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'users/index'
+  get 'users' => 'users#index', as: 'users_index'
 
   get 'users/show'
 
