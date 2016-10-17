@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :users do
-    resources :contacts do
+    resources :contacts, controller: 'users/contacts' do
       resources :phones, only: [:index, :create, :new, :destroy]
     end
   end
