@@ -4,7 +4,7 @@ class Users::ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.all
+    @contacts = Contact.where(user_id: params[:user_id]).all
   end
 
   # GET /contacts/1
