@@ -1,10 +1,11 @@
 class Users::ContactsController < ApplicationController
+  before_action :set_user
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
 
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.where(user_id: params[:user_id]).all
+    @contacts = @user.contacts.all
   end
 
   # GET /contacts/1
@@ -24,7 +25,7 @@ class Users::ContactsController < ApplicationController
   # POST /contacts
   # POST /contacts.json
   def create
-    @contact = Contact.new(contact_params)
+    @contact = @user.contacts.new(contact_params)
     @contact.user_id = params[:user_id]
 
     respond_to do |format|
@@ -63,6 +64,10 @@ class Users::ContactsController < ApplicationController
   end
 
   private
+    def set_user
+      @user = User.find(params[:user_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_contact
       @contact = Contact.find(params[:id])
