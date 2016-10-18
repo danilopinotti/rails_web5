@@ -16,6 +16,9 @@ class Users::ContactsController < ApplicationController
   # GET /contacts/new
   def new
     @contact = Contact.new
+
+    # Reserva 4 espaços para armazenar os telefones
+    4.times { @contact.phones.build }
   end
 
   # GET /contacts/1/edit
@@ -64,6 +67,7 @@ class Users::ContactsController < ApplicationController
   end
 
   private
+
     def set_user
       @user = User.find(params[:user_id])
     end
@@ -75,6 +79,6 @@ class Users::ContactsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contact_params
-      params.fetch(:contact, {})
+      params.require(:contact).permit(:phones)
     end
 end

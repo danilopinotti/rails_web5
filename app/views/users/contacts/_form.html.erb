@@ -14,6 +14,9 @@
   <%= f.text_field :name %><br />
   <%= f.date_field :born_date %><br />
 
+  <%= f.fields_for :phones do |builder| %>
+   <%= render "phone_fields", f: builder %>
+  <% end %>
 
 
   <div class="actions">
