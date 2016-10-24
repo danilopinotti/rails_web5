@@ -10,6 +10,7 @@
       </ul>
     </div>
   <% end %>
+  <div class="fields">
 
   <%= f.text_field :name %><br />
   <%= f.date_field :born_date %><br />
@@ -18,6 +19,8 @@
    <%= render "phone_fields", f: builder %>
   <% end %>
 
+  <p><%= link_to_add_fields "Add Phone", f, :phones %></p>
+</div>
 
   <div class="actions">
     <%= f.submit %>
