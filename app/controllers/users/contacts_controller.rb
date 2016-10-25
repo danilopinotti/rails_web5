@@ -5,7 +5,7 @@ class Users::ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = @user.contacts.all
+    @contacts = @user.contacts.includes(:phones).all # => deixa os phones carregados no objeto
   end
 
   # GET /contacts/1
@@ -63,6 +63,7 @@ class Users::ContactsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to user_contacts_url(@contact.user_id), notice: 'Contact was successfully destroyed.' }
       format.json { head :no_content }
+      format.js # => Responde ajax
     end
   end
 
